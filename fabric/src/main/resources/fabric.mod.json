@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "advancement_cascade",
+  "version": "${version}",
+  "name": "Advancement Cascade",
+  "description": "Adds advancement-based advancement triggers",
+  "authors": [
+    {
+      "name": "Nerjal Nosk",
+      "role": "developer",
+      "contact": {
+        "homepage": "https://github.com/NerjalNosk"
+      }
+    },
+    {
+      "name": "Recraftors Team",
+      "role": "owner",
+      "contact": {
+        "homepage": "https://github.com/RecraftorsMC"
+      }
+    }
+  ],
+  "contact": {
+    "sources": "https://github.com/RecraftorsMC/Advancement-Cascade",
+    "issues": "https://github.com/RecraftorsMC/Advancement-Cascade/issues"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "advancement_cascade-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.20",
+    "minecraft": ">=1.19"
+  }
+}
