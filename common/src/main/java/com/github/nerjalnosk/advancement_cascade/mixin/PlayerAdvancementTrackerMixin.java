@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PlayerAdvancementTrackerMixin {
     @Shadow private ServerPlayerEntity owner;
 
-    @Inject(method = "grantCriterion", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/PlayerAdvancementTracker;updateDisplay(Lnet/minecraft/advancement/Advancement;)V", shift = At.Shift.AFTER))
+    @Inject(method = "grantCriterion", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/PlayerAdvancementTracker;onStatusUpdate(Lnet/minecraft/advancement/Advancement;)V", shift = At.Shift.AFTER))
     private void onAdvancementGrantInjector(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         AdvancementCascade.advGetCriterion().trigger(this.owner);
     }
 
-    @Inject(method = "revokeCriterion", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/PlayerAdvancementTracker;updateDisplay(Lnet/minecraft/advancement/Advancement;)V", shift = At.Shift.AFTER))
+    @Inject(method = "revokeCriterion", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/PlayerAdvancementTracker;onStatusUpdate(Lnet/minecraft/advancement/Advancement;)V", shift = At.Shift.AFTER))
     private void onAdvancementRevokeInjector(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         AdvancementCascade.advLossCriterion().trigger(this.owner);
     }

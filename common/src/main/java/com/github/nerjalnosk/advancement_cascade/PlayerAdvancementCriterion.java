@@ -6,10 +6,7 @@ import com.google.gson.JsonPrimitive;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.entity.PlayerPredicate;
+import net.minecraft.predicate.entity.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
@@ -29,7 +26,7 @@ public class PlayerAdvancementCriterion extends AbstractCriterion<PlayerAdvancem
     }
 
     @Override
-    public Conditions conditionsFromJson(JsonObject obj, EntityPredicate.Extended playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
+    protected Conditions conditionsFromJson(JsonObject obj, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
         TriggerType type;
         if (obj.has("type")) type = TriggerType.tryName(obj.get("type").getAsString()).orElse(TriggerType.ONLY);
         else type = TriggerType.ONLY;
@@ -87,7 +84,7 @@ public class PlayerAdvancementCriterion extends AbstractCriterion<PlayerAdvancem
         private final Identifier[] targets;
         private final PlayerPredicate predicate;
 
-        public Conditions(Identifier id, EntityPredicate.Extended player, TriggerType type, Identifier[] targets, PlayerPredicate predicate) {
+        public Conditions(Identifier id, LootContextPredicate player, TriggerType type, Identifier[] targets, PlayerPredicate predicate) {
             super(id, player);
             this.type = type;
             this.targets = targets;
