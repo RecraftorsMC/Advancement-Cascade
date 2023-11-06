@@ -1,6 +1,8 @@
 package com.github.nerjalnosk.advancement_cascade;
 
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +32,8 @@ public class AdvancementCascade {
 		return advLossCriterion;
 	}
 
-	public static Identifier id(String s) {
+	@Contract(value = "_ -> new", pure = true)
+	public static @NotNull Identifier id(String s) {
 		return new Identifier(MOD_ID, s);
 	}
 }
